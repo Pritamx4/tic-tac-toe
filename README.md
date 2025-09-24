@@ -61,27 +61,8 @@ This game runs directly in your browser! Here's how to get your cosmic battle st
    ```bash
    cd tic-tac-toe
    ```
-
-3. **Launch the game** (multiple ways because we're flexible like that):
    
-   **Option A - Python Power** 🐍:
-   ```bash
-   python3 -m http.server 8000
-   ```
-   
-   **Option B - Node.js Ninja** 🥷:
-   ```bash
-   npx serve .
-   ```
-   
-   **Option C - PHP Master** 🔥:
-   ```bash
-   php -S localhost:8000
-   ```
-
-4. **Open your browser** and navigate to `http://localhost:8000`
-
-5. **PREPARE FOR GLORY!** 🏆
+3. **PREPARE FOR GLORY!** 🏆
 
 ### Method 2: The Double-Click Warrior Way 🖱️
 Just open `index.html` directly in your browser. BOOM! Instant gaming nirvana!
@@ -157,8 +138,7 @@ Just open `index.html` directly in your browser. BOOM! Instant gaming nirvana!
 
 ### 🎯 Coming Soon (Maybe):
 - [ ] **AI Opponent** that reads your mind
-- [ ] **Multiplayer Battles** across dimensions  
-- [ ] **Tournament Mode** with cosmic prizes
+- [ ] **Multiplayer Battles** across dimensions 
 - [ ] **Custom Themes** (Neon, Retro, Holographic)
 - [ ] **Sound Effects** that shatter glass
 - [ ] **Leaderboards** to showcase legends
