@@ -37,11 +37,13 @@ boxes.forEach((box) => {
 const showWinner = (Winner) => {
   msg.innerText = `Congratulations, Winner is ${Winner}`;
   msgContainer.classList.remove("hide");
+  resetBtn.style.display = "none"; // Hide reset button when someone wins
 };
 
 const showDraw = () => {
   msg.innerText = "It's a Draw! Game Over";
   msgContainer.classList.remove("hide");
+  resetBtn.style.display = "none"; // Hide reset button when it's a draw
 };
 
 
@@ -95,6 +97,7 @@ const resetGame = () => {
   turnO = true;
   enableBoxes();
   msgContainer.classList.add("hide");
+  resetBtn.style.display = "block"; // Show reset button again when starting new game
 };
 
 newGameBtn.addEventListener("click", resetGame);
