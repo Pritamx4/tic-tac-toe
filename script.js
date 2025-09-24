@@ -39,6 +39,14 @@ const showWinner = (Winner) => {
   msgContainer.classList.remove("hide");
 };
 
+const showDraw = () => {
+  msg.innerText = "It's a Draw! Game Over";
+  msgContainer.classList.remove("hide");
+};
+
+
+
+
 const enableBoxes = () => {
   for (let box of boxes) {
     box.disabled = false;
@@ -63,8 +71,23 @@ const checkWinner = () => {
         console.log("Winner", pos1Val);
         disableBoxes();
         showWinner(pos1Val);
+        return;
       }
     }
+  }
+  
+  // Check for draw - all boxes filled and no winner
+  let isDraw = true;
+  for (let box of boxes) {
+    if (box.innerText === "") {
+      isDraw = false;
+      break;
+    }
+  }
+  
+  if (isDraw) {
+    disableBoxes();
+    showDraw();
   }
 };
 
