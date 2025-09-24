@@ -3,6 +3,8 @@ let resetBtn = document.querySelector("#reset-btn");
 let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
+let gameContainer = document.querySelector(".container");
+let heading = document.querySelector("h1");
 
 let turnO = true; //playerX, playerO
 
@@ -37,11 +39,19 @@ boxes.forEach((box) => {
 const showWinner = (Winner) => {
   msg.innerText = `Congratulations, Winner is ${Winner}`;
   msgContainer.classList.remove("hide");
+  resetBtn.style.display = "none"; // Hide reset button when someone wins
+  gameContainer.style.display = "none"; // Hide game board
+  heading.style.display = "none"; // Hide heading
+  createParticleEffect(); // Add celebration particles
 };
 
 const showDraw = () => {
   msg.innerText = "It's a Draw! Game Over";
   msgContainer.classList.remove("hide");
+  resetBtn.style.display = "none"; // Hide reset button when it's a draw
+  gameContainer.style.display = "none"; // Hide game board
+  heading.style.display = "none"; // Hide heading
+  createParticleEffect(); // Add celebration particles for draw too
 };
 
 
@@ -95,6 +105,63 @@ const resetGame = () => {
   turnO = true;
   enableBoxes();
   msgContainer.classList.add("hide");
+  resetBtn.style.display = "block"; // Show reset button again when starting new game
+  gameContainer.style.display = "flex"; // Show game board again
+  heading.style.display = "block"; // Show heading again
+  clearParticles(); // Remove any remaining particles
+};
+
+// Function to create particle effect
+const createParticleEffect = () => {
+  const particleContainer = document.createElement('div');
+  particleContainer.classList.add('particles');
+  document.body.appendChild(particleContainer);
+
+  // Create multiple waves of confetti for party bumper effect
+  const waves = 5;
+  const particlesPerWave = 40;
+  
+  for (let wave = 0; wave < waves; wave++) {
+    setTimeout(() => {
+      for (let i = 0; i < particlesPerWave; i++) {
+        setTimeout(() => {
+          createParticle(particleContainer);
+        }, i * 15); // Stagger particle creation within wave
+      }
+    }, wave * 200); // Stagger waves every 200ms
+  }
+
+  // Clean up after animation
+  setTimeout(() => {
+    clearParticles();
+  }, 6000);
+};
+
+// Function to create individual particle
+const createParticle = (container) => {
+  const particle = document.createElement('div');
+  particle.classList.add('particle');
+  
+  // Random horizontal starting position
+  particle.style.left = Math.random() * 100 + '%';
+  
+  // Random delay for more natural paper drop effect
+  particle.style.animationDelay = Math.random() * 0.5 + 's';
+  
+  // Random duration variation for realistic paper flutter
+  particle.style.animationDuration = (3.5 + Math.random() * 1.5) + 's';
+  
+  container.appendChild(particle);
+};
+
+// Function to clear all particles
+const clearParticles = () => {
+  const particles = document.querySelectorAll('.particles');
+  particles.forEach(container => {
+    if (container && container.parentNode) {
+      container.parentNode.removeChild(container);
+    }
+  });
 };
 
 newGameBtn.addEventListener("click", resetGame);
